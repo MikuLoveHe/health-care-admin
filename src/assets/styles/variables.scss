@@ -1,0 +1,22 @@
+/**
+ * SCSS 编译期常量
+ *
+ * 这里只放「尺寸、圆角、层级」这类不会随主题变化的常量，可以在任意组件中安全 @use
+ * ——因为本文件不产出任何 CSS，不会造成样式重复。
+ *
+ * 凡是需要跟随明暗主题切换的颜色，一律用 CSS 自定义属性，定义在 theme.scss 中，
+ * 组件里直接写 var(--app-xxx) 即可。切勿在此处添加颜色变量。
+ */
+
+/* 布局尺寸 */
+$sidebar-width: 220px;
+$sidebar-collapsed-width: 64px;
+$navbar-height: 60px;
+
+/* 圆角 */
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+
+/* 层级 */
+$z-navbar: 1000;

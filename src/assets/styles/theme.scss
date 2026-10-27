@@ -1,0 +1,158 @@
+/**
+ * 主题定义（唯一产出 CSS 变量的文件，只允许在 index.scss 中引入一次）
+ *
+ * 全站颜色统一走 CSS 自定义属性，好处是暗黑模式只需切换 <html> 上的 dark 类，
+ * 无需重新编译样式、也不需要任何组件做条件渲染。
+ *
+ * 命名约定：
+ *   --el-*    覆盖 Element Plus 官方变量，组件库自动跟随
+ *   --app-*   本项目业务变量（卡片、边框、文字层级等）
+ *
+ * 注意：本文件包含真实 CSS 输出，Sass 的 @use 会把被引入文件的 CSS
+ * 复制进每一处引用点。若在组件里 @use 本文件，变量块会被重复输出上百份，
+ * 因此组件内如需 SCSS 编译期常量，请改用 variables.scss。
+ */
+
+/* ============================ 亮色主题（默认） ============================ */
+:root {
+  /* 品牌色：青绿主色 + 暖橙强调色 */
+  --app-primary: #2ba88f;
+  --app-primary-light: #3fb6a0;
+  --app-primary-dark: #1f8a74;
+  --app-primary-soft: #e8f6f2;
+  --app-accent: #f5a623;
+  --app-accent-soft: #fef4e4;
+
+  /* 功能色 */
+  --app-success: #2ba88f;
+  --app-warning: #f5a623;
+  --app-danger: #f56c6c;
+  --app-info: #5b8ff9;
+
+  /* 背景层级：页面底 -> 卡片 -> 悬浮 */
+  --app-bg-page: #f5f7f6;
+  --app-bg-card: #ffffff;
+  --app-bg-hover: #f2f7f5;
+  --app-bg-sidebar: #ffffff;
+  --app-bg-navbar: #ffffff;
+
+  /* 文字层级 */
+  --app-text-primary: #1f2d3d;
+  --app-text-regular: #4e5969;
+  --app-text-secondary: #86909c;
+  --app-text-placeholder: #c9cdd4;
+
+  /* 边框与分割线 */
+  --app-border: #e5e8e6;
+  --app-border-light: #f0f2f1;
+
+  /* 阴影 */
+  --app-shadow-sm: 0 1px 2px rgba(31, 45, 61, 0.04);
+  --app-shadow-md: 0 2px 12px rgba(31, 45, 61, 0.06);
+  --app-shadow-lg: 0 6px 24px rgba(31, 45, 61, 0.1);
+
+  /* 侧边栏菜单 */
+  --app-menu-text: #4e5969;
+  --app-menu-active-text: #2ba88f;
+  --app-menu-active-bg: #e8f6f2;
+  --app-menu-hover-bg: #f2f7f5;
+  --app-menu-title: #86909c;
+
+  /* 图表调色板（ECharts 读不到 CSS 变量，此处仅供 JS 侧取值参考） */
+  --app-chart-1: #2ba88f;
+  --app-chart-2: #5b8ff9;
+  --app-chart-3: #f5a623;
+  --app-chart-4: #7bc6b4;
+  --app-chart-5: #ff7875;
+  --app-chart-6: #9b8afb;
+
+  /* ============================ Element Plus 变量覆盖 ============================ */
+  --el-color-primary: var(--app-primary);
+  --el-color-primary-light-3: var(--app-primary-light);
+  --el-color-primary-light-5: #6ec9b8;
+  --el-color-primary-light-7: #a5dcd1;
+  --el-color-primary-light-8: #c4e8e1;
+  --el-color-primary-light-9: var(--app-primary-soft);
+  --el-color-primary-dark-2: var(--app-primary-dark);
+
+  --el-color-success: var(--app-success);
+  --el-color-warning: var(--app-warning);
+  --el-color-danger: var(--app-danger);
+  --el-color-error: var(--app-danger);
+  --el-color-info: var(--app-text-secondary);
+
+  --el-text-color-primary: var(--app-text-primary);
+  --el-text-color-regular: var(--app-text-regular);
+  --el-text-color-secondary: var(--app-text-secondary);
+  --el-text-color-placeholder: var(--app-text-placeholder);
+
+  --el-border-color: var(--app-border);
+  --el-border-color-light: var(--app-border-light);
+  --el-border-color-lighter: var(--app-border-light);
+  --el-fill-color-blank: var(--app-bg-card);
+  --el-bg-color: var(--app-bg-card);
+  --el-bg-color-page: var(--app-bg-page);
+  --el-bg-color-overlay: var(--app-bg-card);
+
+  --el-border-radius-base: 6px;
+  --el-font-size-base: 14px;
+}
+
+/* ============================ 暗黑主题 ============================ */
+html.dark {
+  --app-primary: #3fc4a8;
+  --app-primary-light: #4fd2b6;
+  --app-primary-dark: #2ba88f;
+  --app-primary-soft: #1c3a35;
+  --app-accent: #ffb84d;
+  --app-accent-soft: #3d3218;
+
+  --app-success: #3fc4a8;
+  --app-warning: #ffb84d;
+  --app-danger: #ff7875;
+  --app-info: #7ba7ff;
+
+  --app-bg-page: #14181a;
+  --app-bg-card: #1c2224;
+  --app-bg-hover: #242c2e;
+  --app-bg-sidebar: #1c2224;
+  --app-bg-navbar: #1c2224;
+
+  --app-text-primary: #e8eceb;
+  --app-text-regular: #c2cac8;
+  --app-text-secondary: #8b9694;
+  --app-text-placeholder: #5c6764;
+
+  --app-border: #2e383a;
+  --app-border-light: #262e30;
+
+  --app-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --app-shadow-md: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --app-shadow-lg: 0 6px 24px rgba(0, 0, 0, 0.5);
+
+  --app-menu-text: #c2cac8;
+  --app-menu-active-text: #3fc4a8;
+  --app-menu-active-bg: #1c3a35;
+  --app-menu-hover-bg: #242c2e;
+  --app-menu-title: #8b9694;
+
+  --app-chart-1: #3fc4a8;
+  --app-chart-2: #7ba7ff;
+  --app-chart-3: #ffb84d;
+  --app-chart-4: #6ed0bb;
+  --app-chart-5: #ff9c99;
+  --app-chart-6: #b3a6fc;
+
+  /* 暗黑模式下同步修正 Element Plus 的浅色梯度，避免出现亮色残留 */
+  --el-color-primary-light-3: #35a68f;
+  --el-color-primary-light-5: #2b8a76;
+  --el-color-primary-light-7: #1f6355;
+  --el-color-primary-light-8: #1a5045;
+  --el-color-primary-light-9: #1c3a35;
+  --el-border-color: var(--app-border);
+  --el-border-color-light: var(--app-border-light);
+  --el-border-color-lighter: var(--app-border-light);
+  --el-fill-color-light: var(--app-bg-hover);
+  --el-fill-color-lighter: var(--app-bg-hover);
+  --el-mask-color: rgba(0, 0, 0, 0.7);
+}

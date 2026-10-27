@@ -1,0 +1,194 @@
+/**
+ * 全局样式入口（仅由 main.js 引入一次）
+ *
+ * 只放全局重置、通用布局类与跨页面复用的样式，
+ * 组件私有样式一律写在各自 <style scoped> 中。
+ *
+ * 注意 theme.scss 含有真实 CSS 输出，只能在此处引入一次，
+ * 切勿在组件样式里 @use 它，否则变量块会被重复输出。
+ */
+@use './variables.scss' as *;
+@use './theme.scss';
+
+/* ============================ 重置 ============================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: var(--app-text-primary);
+  background-color: var(--app-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 主题切换时给背景与文字一个过渡，避免生硬闪变 */
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: var(--app-primary);
+  text-decoration: none;
+}
+
+/* 统一滚动条样式，避免各浏览器默认样式破坏整体观感 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--app-text-placeholder);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--app-text-secondary);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* ============================ 通用布局类 ============================ */
+
+/* 业务页面统一容器：所有 views 下的页面根节点都用它，保证间距一致 */
+.page-container {
+  padding: 16px;
+  min-height: 100%;
+}
+
+/* 白色卡片：搜索栏、表格容器、图表容器统一用它包裹 */
+.app-card {
+  background-color: var(--app-bg-card);
+  border-radius: $radius-md;
+  box-shadow: var(--app-shadow-sm);
+  border: 1px solid var(--app-border-light);
+}
+
+.app-card + .app-card {
+  margin-top: 16px;
+}
+
+/* 卡片内的内边距，可按需覆盖 */
+.app-card__body {
+  padding: 16px;
+}
+
+/* 页面主标题 */
+.app-page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+}
+
+/* 次要说明文字 */
+.app-text-secondary {
+  color: var(--app-text-secondary);
+  font-size: 13px;
+}
+
+/* 表格上方的操作按钮行 */
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* 分页统一右对齐并留出上边距 */
+.app-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* 空状态留白 */
+.app-empty {
+  padding: 40px 0;
+}
+
+/* ============================ Element Plus 细节调整 ============================ */
+
+/* 表格：去掉最外层加粗边框，让表格更贴合卡片 */
+.el-table {
+  --el-table-border-color: var(--app-border-light);
+  --el-table-header-bg-color: var(--app-bg-hover);
+  --el-table-row-hover-bg-color: var(--app-bg-hover);
+  background-color: transparent;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+  color: var(--app-text-regular);
+}
+
+/* 表单项标签统一字重，避免同一行参差不齐 */
+.el-form-item__label {
+  font-weight: 500;
+}
+
+/* 卡片标题栏 */
+.el-card__header {
+  border-bottom: 1px solid var(--app-border-light);
+  font-weight: 600;
+}
+
+/* 弹窗圆角与暗黑模式适配 */
+.el-dialog {
+  border-radius: $radius-md;
+  background-color: var(--app-bg-card);
+}
+
+.el-drawer {
+  background-color: var(--app-bg-card);
+}
+
+/* 描述列表在暗黑模式下的底色 */
+.el-descriptions {
+  --el-descriptions-item-bordered-label-background: var(--app-bg-hover);
+}
+
+/* ============================ 主题过渡 ============================ */
+/* 允许跟随主题变化做过渡的元素（图表由 ChartCard 负责重绘，不在此列） */
+.app-card,
+.el-table,
+.el-table tr,
+.el-table th.el-table__cell,
+.el-table td.el-table__cell {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* ============================ 响应式 ============================ */
+/* 作业要求适配 1366×768 及以上，窄屏下收紧内边距、表格可横向滚动 */
+@media (max-width: 1440px) {
+  .page-container {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .app-card__body {
+    padding: 12px;
+  }
+}
