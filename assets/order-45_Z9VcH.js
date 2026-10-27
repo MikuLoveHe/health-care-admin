@@ -1,0 +1,1 @@
+import{t as e}from"./request-DZRgbjP4.js";function t(t){return e.get(`/orders`,{params:t})}function n(t){return e.get(`/orders/${t}`)}function r(t,n){return e.patch(`/orders/${t}/cancel`,n)}export{n,t as r,r as t};
