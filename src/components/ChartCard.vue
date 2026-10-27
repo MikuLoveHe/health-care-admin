@@ -11,7 +11,7 @@
  *   <ChartCard title="订单趋势" :option="option" height="320px" />
  */
 import { computed, onBeforeUnmount, onMounted, ref, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '@/utils/echarts'
 import { useAppStore } from '@/stores/app'
 
 const props = defineProps({

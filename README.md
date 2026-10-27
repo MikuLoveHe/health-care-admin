@@ -212,6 +212,18 @@ ECharts 无法读取 CSS 变量，因此 `components/ChartCard.vue` 内置了明
 
 ---
 
+## 性能优化
+
+图表库最初通过 `import * as echarts from 'echarts'` 全量引入，仅图表模块就占 1 MB。改为 `echarts/core` 按需注册（柱状图、折线图、饼图 + 必需组件 + Canvas 渲染器）后：
+
+| 指标 | 优化前 | 优化后 | 变化 |
+|---|---|---|---|
+| 图表 chunk（原始） | 1095.2 kB | 558.4 kB | -49.0% |
+| 图表 chunk（gzip） | 372.5 kB | 187.4 kB | -49.7% |
+| 全站 JS（gzip） | 804.0 kB | 632.3 kB | -21.4% |
+
+按需注册入口见 [`src/utils/echarts.js`](src/utils/echarts.js)。新增图表类型时需同步注册对应的 Chart 与 Component，否则图表不会渲染。
+
 ## 已知说明
 
 - 本项目所有数据均为 Mock 数据，刷新页面后增删改查的结果会重置。
