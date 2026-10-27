@@ -11,6 +11,7 @@
 
 ![首页概览](docs/images/dashboard.png)
 
+**在线 Demo**：<https://mikulovehe.github.io/health-care-admin/>（演示账号 `admin` / `123456`）
 **项目规模**：5 大业务模块 · 18 个页面 · 28 个 Vue 组件，独立完成
 **技术栈**：Vue 3 · Vite · Element Plus · Pinia · ECharts
 **数据来源**：前端 Mock（Axios adapter），无需后端即可完整运行
